@@ -1,5 +1,5 @@
 <template>
-  <form id="burger-form">
+  <form id="burger-form" @submit="createBurger">
     <div class="input-container">
       <label for="nome">Nome do Cliente:</label>
       <input
@@ -58,6 +58,7 @@
 
 <script>
 import { defineComponent } from "@vue/runtime-core";
+import axios from "axios";
 
 export default defineComponent({
   name: "FormuLario",
@@ -73,7 +74,6 @@ export default defineComponent({
       pao: null,
       carne: null,
       opcionais: [],
-      status: "solicitado",
       msg: null,
     };
   },
@@ -86,6 +86,33 @@ export default defineComponent({
       this.paes = data.paes;
       this.carnes = data.carnes;
       this.opcionaisdata = data.opcionais;
+    },
+    async createBurger(e) {
+      e.preventDefault();
+
+      const data = {
+        nome: this.nome,
+        carne: this.carne,
+        pao: this.pao,
+        opcionais: Array.from(this.opcionais),
+        status: "Solicitado",
+      };
+
+      const result = await axios.post("http://localhost:3000/burgers", {
+        data,
+      });
+
+      //colocar uma mensagem de sistema
+
+      //limpar a mensagem
+
+      //limpar os campos
+      this.nome = "";
+      this.carne = "";
+      this.pao = "";
+      this.opcionais = "";
+
+      console.log(result.data);
     },
   },
   mounted() {
