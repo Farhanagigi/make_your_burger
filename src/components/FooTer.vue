@@ -1,7 +1,8 @@
 <template>
-  <div>
-    <p>Footer</p>
-  </div>
+  <footer id="footer">
+    <p>Make Your Burger &copy; 2022</p>
+    <p>.Farhan Agigi</p>
+  </footer>
 </template>
 
 <script>
@@ -12,4 +13,17 @@ export default defineComponent({
 });
 </script>
 
-<style lang="scss" scoped></style>
+<style scoped>
+#footer {
+  height: 200px;
+  background-color: #222;
+  border-top: 4px solid #111;
+  color: #fcba04;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  position: absolute;
+  bottom: 0;
+}
+</style>
