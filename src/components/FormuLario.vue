@@ -15,7 +15,9 @@
       <label for="pao">Escolha o pão:</label>
       <select id="pao" name="pao" v-model="pao">
         <option value="">Selecione o seu pão</option>
-        <option value="integral">Integral</option>
+        <option v-for="pao in paes" :key="pao.id" :value="pao.tipo">
+          {{ pao.tipo }}
+        </option>
       </select>
     </div>
 
@@ -23,7 +25,9 @@
       <label for="carne">Escolha a carne do seu Burger:</label>
       <select id="carne" name="carne" v-model="carne">
         <option value="">Selecione o tipo de carne</option>
-        <option value="beef">beef</option>
+        <option v-for="carne in carnes" :key="carne.id" value="carne.tipo">
+          {{ carne.tipo }}
+        </option>
       </select>
     </div>
 
@@ -31,34 +35,18 @@
       <label id="opcionais-title" for="opcionais"
         >Selecione os opcionais:</label
       >
-      <div class="checkbox-container">
+      <div
+        class="checkbox-container"
+        v-for="opcional in opcionaisdata"
+        :key="opcional.id"
+      >
         <input
           type="checkbox"
           name="opcionais"
           v-model="opcionais"
-          value="salame"
+          :value="opcional.tipo"
         />
-        <span>Salame</span>
-      </div>
-
-      <div class="checkbox-container">
-        <input
-          type="checkbox"
-          name="opcionais"
-          v-model="opcionais"
-          value="salame"
-        />
-        <span>Salame</span>
-      </div>
-
-      <div class="checkbox-container">
-        <input
-          type="checkbox"
-          name="opcionais"
-          v-model="opcionais"
-          value="salame"
-        />
-        <span>Salame</span>
+        <span>{{ opcional.tipo }}</span>
       </div>
 
       <div class="input-container">
@@ -73,6 +61,36 @@ import { defineComponent } from "@vue/runtime-core";
 
 export default defineComponent({
   name: "FormuLario",
+  data() {
+    return {
+      //dados que vem do servidor para prencher os combo box ele faz o fetch
+      paes: null,
+      carnes: null,
+      opcionaisdata: null,
+
+      //dados que o cliente requisita ou faz pedidos
+      nome: null,
+      pao: null,
+      carne: null,
+      opcionais: [],
+      status: "solicitado",
+      msg: null,
+    };
+  },
+  methods: {
+    async getIngredientes() {
+      const req = await fetch("http://localhost:3000/ingredientes");
+
+      const data = await req.json();
+
+      this.paes = data.paes;
+      this.carnes = data.carnes;
+      this.opcionaisdata = data.opcionais;
+    },
+  },
+  mounted() {
+    this.getIngredientes();
+  },
 });
 </script>
 
