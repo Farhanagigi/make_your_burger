@@ -80,31 +80,17 @@
   "burgers": [
     {
       "data": {
-        "nome": "Farhan",
-        "carne": "carne.tipo",
+        "nome": "Ze ninguem",
+        "carne": "Veggie burger",
         "pao": "Integral",
         "opcionais": [
-          "Cheddar",
-          "Cebola roxa",
+          "Salame",
+          "Pepino",
           "Tomate"
         ],
         "status": "Solicitado"
       },
       "id": 1
-    },
-    {
-      "data": {
-        "nome": "zeka",
-        "carne": "carne.tipo",
-        "pao": "Italiano Branco",
-        "opcionais": [
-          "Bacon",
-          "Salame",
-          "Cebola roxa"
-        ],
-        "status": "Solicitado"
-      },
-      "id": 2
     }
   ]
 }

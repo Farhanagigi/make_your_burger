@@ -25,7 +25,7 @@
       <label for="carne">Escolha a carne do seu Burger:</label>
       <select id="carne" name="carne" v-model="carne">
         <option value="">Selecione o tipo de carne</option>
-        <option v-for="carne in carnes" :key="carne.id" value="carne.tipo">
+        <option v-for="carne in carnes" :key="carne.id" :value="carne.tipo">
           {{ carne.tipo }}
         </option>
       </select>
@@ -50,18 +50,43 @@
       </div>
 
       <div class="input-container">
-        <input type="submit" class="submit-btn" value="Criar meu Burger!" />
+        <button @click="isModalOpen = true">
+          <input type="submit" class="submit-btn" value="Criar meu Burger!" />
+        </button>
       </div>
     </div>
   </form>
+  <div>
+    <Teleport to="#modal">
+      <transition name="modal">
+        <div class="modal-bg" v-if="isModalOpen">
+          <div class="modal">
+            <button class="close-btn" @click="isModalOpen = false">X</button>
+            <img
+              class="img1"
+              src="../../public/img/ok-good.png"
+              alt="Correct"
+              v-show="msg"
+            />
+            <MessaGe :msg="msg" v-show="msg" />
+          </div>
+        </div>
+      </transition>
+    </Teleport>
+  </div>
 </template>
 
 <script>
 import { defineComponent } from "@vue/runtime-core";
 import axios from "axios";
+import MessaGe from "./MessaGe.vue";
+import { ref } from "vue";
 
 export default defineComponent({
   name: "FormuLario",
+  components: {
+    MessaGe,
+  },
   data() {
     return {
       //dados que vem do servidor para prencher os combo box ele faz o fetch
@@ -75,6 +100,7 @@ export default defineComponent({
       carne: null,
       opcionais: [],
       msg: null,
+      isModalOpen: ref(false),
     };
   },
   methods: {
@@ -103,8 +129,12 @@ export default defineComponent({
       });
 
       //colocar uma mensagem de sistema
+      this.msg = `Pedido Nº ${result.data.id} realizado com sucesso!!`;
 
       //limpar a mensagem
+      setTimeout(() => {
+        this.isModalOpen = false;
+      }, 5000);
 
       //limpar os campos
       this.nome = "";
@@ -143,7 +173,7 @@ label {
 
 input,
 select {
-  padding: 5px, 10px;
+  padding: 5px 10px;
   width: 300px;
 }
 
@@ -188,5 +218,56 @@ select {
 .submit-btn:hover {
   background-color: transparent;
   color: #222;
+}
+
+.img1 {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  margin-bottom: 15px;
+}
+
+.modal-bg {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+
+  background-color: rgba(0, 0, 0, 0.5);
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.modal {
+  position: relative;
+
+  background: white;
+  padding: 50px 100px;
+  border-radius: 5px;
+  box-shadow: 0px 10px 5px 2px rgba(0, 0, 0, 0.1);
+}
+
+.modal .close-btn {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+
+  background: whitesmoke;
+  border: none;
+  cursor: pointer;
+}
+
+.modal-enter-active,
+.modal-leave-active {
+  transition: all 0.25s ease;
+}
+
+.modal-enter-from,
+.modal-leave-to {
+  opacity: 0;
+  transform: scale(1.1);
 }
 </style>
