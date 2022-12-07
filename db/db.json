@@ -79,18 +79,40 @@
   ],
   "burgers": [
     {
-      "data": {
-        "nome": "Ze ninguem",
-        "carne": "Veggie burger",
-        "pao": "Integral",
-        "opcionais": [
-          "Salame",
-          "Pepino",
-          "Tomate"
-        ],
-        "status": "Solicitado"
-      },
+      "nome": "zeka",
+      "carne": "Maminha",
+      "pao": "3 Queijos",
+      "opcionais": [
+        "Bacon",
+        "Salame"
+      ],
+      "status": "Solicitado",
       "id": 1
+    },
+    {
+      "nome": "Farhan",
+      "carne": "Picanha",
+      "pao": "Italiano Branco",
+      "opcionais": [
+        "Cheddar",
+        "Tomate",
+        "Pepino"
+      ],
+      "status": "Solicitado",
+      "id": 2
+    },
+    {
+      "nome": "EREN",
+      "carne": "Maminha",
+      "pao": "Parmesão e Orégano",
+      "opcionais": [
+        "Bacon",
+        "Salame",
+        "Cheddar",
+        "Tomate"
+      ],
+      "status": "Solicitado",
+      "id": 3
     }
   ]
 }

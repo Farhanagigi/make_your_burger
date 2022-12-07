@@ -105,27 +105,31 @@ export default defineComponent({
   },
   methods: {
     async getIngredientes() {
-      const req = await fetch("http://localhost:3000/ingredientes");
+      const req = await axios.get("http://localhost:3000/ingredientes");
 
-      const data = await req.json();
+      /*  const data = await req.json(); */
 
-      this.paes = data.paes;
-      this.carnes = data.carnes;
-      this.opcionaisdata = data.opcionais;
+      this.paes = req.data.paes;
+      this.carnes = req.data.carnes;
+      this.opcionaisdata = req.data.opcionais;
     },
     async createBurger(e) {
       e.preventDefault();
 
-      const data = {
+      /* const data = {
         nome: this.nome,
         carne: this.carne,
         pao: this.pao,
         opcionais: Array.from(this.opcionais),
         status: "Solicitado",
-      };
+      }; */
 
       const result = await axios.post("http://localhost:3000/burgers", {
-        data,
+        nome: this.nome,
+        carne: this.carne,
+        pao: this.pao,
+        opcionais: Array.from(this.opcionais),
+        status: "Solicitado",
       });
 
       //colocar uma mensagem de sistema
