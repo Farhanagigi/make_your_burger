@@ -79,40 +79,41 @@
   ],
   "burgers": [
     {
-      "nome": "zeka",
-      "carne": "Maminha",
-      "pao": "3 Queijos",
-      "opcionais": [
-        "Bacon",
-        "Salame"
-      ],
-      "status": "Solicitado",
-      "id": 1
-    },
-    {
       "nome": "Farhan",
       "carne": "Picanha",
       "pao": "Italiano Branco",
       "opcionais": [
-        "Cheddar",
-        "Tomate",
+        "Salame",
+        "Cebola roxa",
         "Pepino"
       ],
-      "status": "Solicitado",
-      "id": 2
+      "status": "Finalizado",
+      "id": 1
     },
     {
       "nome": "EREN",
-      "carne": "Maminha",
+      "carne": "Veggie burger",
+      "pao": "Parmesão e Orégano",
+      "opcionais": [
+        "Cheddar",
+        "Tomate",
+        "Pepino",
+        "Salame"
+      ],
+      "status": "Em produção",
+      "id": 3
+    },
+    {
+      "nome": "Zenildo",
+      "carne": "Alcatra",
       "pao": "Parmesão e Orégano",
       "opcionais": [
         "Bacon",
         "Salame",
-        "Cheddar",
-        "Tomate"
+        "Cebola roxa"
       ],
       "status": "Solicitado",
-      "id": 3
+      "id": 4
     }
   ]
 }

@@ -18,5 +18,6 @@ export default defineComponent({
 <style scoped>
 .message-container {
   color: #222;
+  text-align: center;
 }
 </style>
